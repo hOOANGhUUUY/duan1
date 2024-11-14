@@ -432,7 +432,10 @@
     .wide {
         width: 644px;
     }
-
+    .row{
+        /* display: flex; */
+        justify-content: center;
+    }
 }
 
 /* > PC low resolution */
@@ -598,16 +601,16 @@
     /* max-width: 1180px; */
     height: 350px;
     background-color: aqua;
-    overflow: hidden; /* Đảm bảo không có phần thừa của ảnh xuất hiện */
+    overflow: hidden; 
 }
 .banner{
     padding: 0;
 }
 .banner-home img{
-    width: 100%; /* Đảm bảo ảnh lấp đầy chiều rộng của phần tử */
-    height: 100%; /* Đảm bảo ảnh lấp đầy chiều cao của phần tử */
-    object-fit: cover; /* Đảm bảo ảnh không bị biến dạng và lấp đầy vùng chứa */
-    object-position: center; /* Căn chỉnh ảnh vào giữa nếu ảnh bị cắt bớt */
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover;
+    object-position: center;
 }
 .product{
     max-width: 280px;
@@ -616,7 +619,7 @@
     margin: 5px;
     box-sizing: border-box;
     border-radius: 10px;
-    position: relative; /* Đảm bảo phần tử cha có position relative */
+    position: relative;
     border: 2px solid #8D6E6E;
     overflow: hidden;
 }
@@ -745,7 +748,7 @@
 
 .box-hot-product .product {
     flex: 0 0 auto;
-    /* Đảm bảo mỗi sản phẩm không thay đổi kích thước */
+
     width: 280px;
     height: 365px;
     background-color: aliceblue;
@@ -800,16 +803,19 @@
     overflow-x: auto;
     scroll-behavior: smooth;
 }
+.products-container::-webkit-scrollbar {
+    display: none; /* Ẩn thanh cuộn trên Chrome, Safari và Opera */
+}
 .post{
     max-width: 380px;
     height: 445px;
     border-radius: 10px;
-    overflow: hidden; /* Đảm bảo nội dung không bị tràn ra ngoài */
-    box-sizing: border-box; /* Đảm bảo kích thước đúng */
+    overflow: hidden;
+    box-sizing: border-box; 
 }
 
 .post .img-post {
-    width: 100%; /* Đảm bảo ảnh nằm vừa vặn với box */
+    width: 100%;
     height: 300px;
     overflow: hidden;
 }
@@ -817,7 +823,7 @@
 .post .img-post img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Giúp hình ảnh được cắt và co giãn phù hợp */
+    object-fit: cover; 
 
 }
 

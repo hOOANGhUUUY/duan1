@@ -229,14 +229,14 @@
 
         </section>
         <!-- banner phụ -->
-         <section class="row">
+        <section class="row">
             <div class="col l-12 m-12 c-12 banner-sub">
                 <div class="sub-banner-home">
                     <img src="/image/thiet-ke-logo-do-handmade.jpg" alt="">
                 </div>
             </div>
-         </section>
-         <!-- banner phụ -->
+        </section>
+        <!-- banner phụ -->
         <!-- sản phẩm nổi bật -->
         <section class="row">
             <div class="title-box">
@@ -371,37 +371,45 @@
                     </div>
                     <button class="next-btn">Phải</button>
                     <script>
-                        const prevBtn = document.querySelector('.prev-btn');
-                        const nextBtn = document.querySelector('.next-btn');
-                        const productsContainer = document.querySelector('.box-hot-product .products-container');
+                       
+                        const nutTrai = document.querySelector('.prev-btn');
+                        const nutPhai = document.querySelector('.next-btn');
+                        const khungSanPham = document.querySelector('.box-hot-product .products-container');
 
-                        let scrollAmount = 0; // Theo dõi vị trí cuộn hiện tại
-                        const productWidth = 280; // Chiều rộng của mỗi sản phẩm
-                        const maxScroll = productsContainer.scrollWidth - productsContainer.clientWidth; // Chiều rộng tối đa có thể cuộn
+                        
+                        let viTriCuon = 0;
+                        const chieuRongSanPham = 280; 
+                        const maxCuon = khungSanPham.scrollWidth - khungSanPham.clientWidth; 
 
-                        // Xử lý sự kiện nút trượt
-                        prevBtn.addEventListener('click', () => {
-                            scrollAmount -= productWidth * 2; // Cuộn 2 sản phẩm sang trái
-                            if (scrollAmount < 0) scrollAmount = 0;
-                            productsContainer.scrollTo({
-                                left: scrollAmount,
+                        
+                        nutTrai.addEventListener('click', () => {
+                            viTriCuon -= chieuRongSanPham * 2; 
+                            if (viTriCuon < 0) viTriCuon = 0; 
+                            khungSanPham.scrollTo({
+                                left: viTriCuon,
                                 behavior: 'smooth'
                             });
                         });
 
-                        nextBtn.addEventListener('click', () => {
-                            scrollAmount += productWidth * 2; // Cuộn 2 sản phẩm sang phải
-                            if (scrollAmount > maxScroll) scrollAmount = maxScroll;
-                            productsContainer.scrollTo({
-                                left: scrollAmount,
-                                behavior: 'smooth'
+
+                        nutPhai.addEventListener('click', () => {
+                            viTriCuon += chieuRongSanPham * 2; 
+                            if (viTriCuon > maxCuon) viTriCuon = maxCuon; 
+                            khungSanPham.scrollTo({
+                                left: viTriCuon,
+                                behavior: 'smooth' 
                             });
                         });
 
-                        // Cập nhật scrollAmount khi người dùng cuộn bằng chuột
-                        productsContainer.addEventListener('scroll', () => {
-                            scrollAmount = productsContainer.scrollLeft;
+                        
+                        khungSanPham.addEventListener('scroll', () => {
+                            viTriCuon = khungSanPham.scrollLeft;
                         });
+                        khungSanPham.addEventListener('wheel', (e) => {
+                            e.preventDefault(); 
+                            khungSanPham.scrollLeft += e.deltaY *4;
+                        });
+
 
                     </script>
                 </div>
