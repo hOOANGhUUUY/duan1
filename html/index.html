@@ -216,14 +216,7 @@
                         </button>
                     </div>
                 </div>
-                <script>
-                    const heartButton = document.querySelectorAll('.heart-button');
-                    heartButton.forEach(button => {
-                        button.addEventListener('click', () => {
-                            button.classList.toggle('active');
-                        });
-                    });
-                </script>
+
 
                 <!-- Thêm các sản phẩm khác tương tự -->
             </div>
@@ -502,5 +495,13 @@
         </section>
     </main>
 </body>
-
+<script>
+    // tim 
+    const heartButton = document.querySelectorAll('.heart-button');
+    heartButton.forEach(button => {
+        button.addEventListener('click', () => {
+            button.classList.toggle('active');
+        });
+    });
+</script>
 </html>
