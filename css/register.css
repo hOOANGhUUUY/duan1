@@ -2,12 +2,12 @@
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
 }
-.register,
+
 .login {
     display: flex;
     justify-content: center;
 }
-.box-register,
+
 .box-login {
  
     height: auto;
@@ -25,7 +25,7 @@
     display: ruby;
     z-index: 1000;
 }
-.register-box-header,
+
 .login-box-header {
     width: 480px;
     max-width: 640px;
@@ -37,7 +37,7 @@
     font-size: 18px;
     margin: 0px 50px;
 }
-.join-login,
+
 .join-register{
     width: 480px;
     height: 40px;
@@ -45,17 +45,16 @@
     float: left;
 }
 
-.join-login,
+
 .join-register a{
     text-decoration: none;
     color: black;
     font-size: 14px;
 }
-.join-login,
+
 .join-register a:hover{
     color: #8D6E6E ;
 }
-.register-box-header button,
 .login-box-header button {
     border: none;
     background: none;
@@ -64,7 +63,6 @@ form{
     width: 480px;
     
 }
-.register-box-header button > i
 .login-box-header button > i {
     font-size: 25px;
     
@@ -181,7 +179,7 @@ form{
     margin: 45px 0px;
 
 }
-.register-btn:hover ,
+
 .login-btn:hover {
     background-color: #0056b3;
 }
@@ -206,7 +204,6 @@ form{
     z-index: 999; 
   }
 @media (max-width: 730px) {
-    .register-box-header,
     .login-box-header {
         width: 450px;
         max-width: 640px;
@@ -222,7 +219,6 @@ form{
         width: 360px;
         
     }
-    .join-login,
     .join-register{
         width: 360px;
         height: 40px;
@@ -231,7 +227,6 @@ form{
     }
 }
 @media (max-width: 600px) {
-        .register-box-header,
         .login-box-header {
             width: 300px;
             max-width: 640px;
@@ -247,7 +242,6 @@ form{
             width: 300px;
             
         }
-        .join-login,
         .join-register{
             width: 300px;
             height: 40px;
