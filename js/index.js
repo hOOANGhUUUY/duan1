@@ -59,9 +59,9 @@ containerSlider.addEventListener('click', (e) => {
     const doRongContainer = containerSlider.offsetWidth;
     const viTriClick = e.clientX;
     if (viTriClick < doRongContainer / 2) {
-        viTriHienTai = (viTriHienTai + 1) % tongSoSlide;
+        viTriHienTai = (viTriHienTai - 1 + tongSoSlide) % tongSoSlide; 
     } else {
-        viTriHienTai = (viTriHienTai - 1 + tongSoSlide) % tongSoSlide;
+        viTriHienTai = (viTriHienTai + 1) % tongSoSlide; 
     }
     capNhatSlider();
 });
