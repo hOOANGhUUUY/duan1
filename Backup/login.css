@@ -1,13 +1,10 @@
-* {
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
+/* 
+.register,
 .login {
     display: flex;
     justify-content: center;
 }
-
+.box-register,
 .box-login {
  
     height: auto;
@@ -25,7 +22,7 @@
     display: ruby;
     z-index: 1000;
 }
-
+.register-box-header,
 .login-box-header {
     width: 480px;
     max-width: 640px;
@@ -37,7 +34,7 @@
     font-size: 18px;
     margin: 0px 50px;
 }
-
+.join-login,
 .join-register{
     width: 480px;
     height: 40px;
@@ -45,16 +42,17 @@
     float: left;
 }
 
-
+.join-login,
 .join-register a{
     text-decoration: none;
     color: black;
     font-size: 14px;
 }
-
+.join-login,
 .join-register a:hover{
     color: #8D6E6E ;
 }
+.register-box-header button,
 .login-box-header button {
     border: none;
     background: none;
@@ -63,6 +61,7 @@ form{
     width: 480px;
     
 }
+.register-box-header button > i
 .login-box-header button > i {
     font-size: 25px;
     
@@ -96,7 +95,6 @@ form{
 }
 .passForm{
     width: 100%;
-    /* background-color: #007bff; */
     display: flex;
 }
 
@@ -137,7 +135,6 @@ form{
     width: 100%;
     display: flex;
     float: left;
-    /* margin-bottom: 15px; */
 }
 
 .checkbox-group label {
@@ -157,7 +154,6 @@ form{
     margin-bottom: 30px;
 }
 .actions .forgot-password{
-    /* text-decoration: none; */
     font-weight: 600;
     color: black;
 }
@@ -175,11 +171,10 @@ form{
     border-radius: 5px;
     cursor: pointer;
     font-size: 14px;
-    /* margin-top: 45px; */
     margin: 45px 0px;
 
 }
-
+.register-btn:hover ,
 .login-btn:hover {
     background-color: #0056b3;
 }
@@ -193,17 +188,8 @@ form{
     display: none; 
     z-index: 999; 
 }
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5); 
-    display: none; 
-    z-index: 999; 
-  }
 @media (max-width: 730px) {
+    .register-box-header,
     .login-box-header {
         width: 450px;
         max-width: 640px;
@@ -219,6 +205,7 @@ form{
         width: 360px;
         
     }
+    .join-login,
     .join-register{
         width: 360px;
         height: 40px;
@@ -227,6 +214,7 @@ form{
     }
 }
 @media (max-width: 600px) {
+        .register-box-header,
         .login-box-header {
             width: 300px;
             max-width: 640px;
@@ -242,10 +230,11 @@ form{
             width: 300px;
             
         }
+        .join-login,
         .join-register{
             width: 300px;
             height: 40px;
             display: flex;
             float: left;
         }
-}
+} */
