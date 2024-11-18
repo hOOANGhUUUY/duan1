@@ -84,6 +84,9 @@ const khungSanPham = document.querySelector('.box-hot-product .products-containe
 let viTriCuon = 0;
 const chieuRongSanPham = 280;
 const maxCuon = khungSanPham.scrollWidth - khungSanPham.clientWidth;
+let lastScrollTime = 0;
+let scrollTimeout;
+
 nutTrai.addEventListener('click', () => {
     viTriCuon -= chieuRongSanPham * 2;
     if (viTriCuon < 0) viTriCuon = 0;
@@ -92,6 +95,7 @@ nutTrai.addEventListener('click', () => {
         behavior: 'smooth'
     });
 });
+
 nutPhai.addEventListener('click', () => {
     viTriCuon += chieuRongSanPham * 2;
     if (viTriCuon > maxCuon) viTriCuon = maxCuon;
@@ -100,12 +104,38 @@ nutPhai.addEventListener('click', () => {
         behavior: 'smooth'
     });
 });
+
 khungSanPham.addEventListener('scroll', () => {
     viTriCuon = khungSanPham.scrollLeft;
 });
+
 khungSanPham.addEventListener('wheel', (e) => {
     e.preventDefault();
-    khungSanPham.scrollLeft += e.deltaY * 4;
+
+
+    const speedX = e.deltaX;
+    const speedY = e.deltaY;
+
+
+    const scrollAmountX = speedX * 40; 
+    const scrollAmountY = speedY * 40; 
+    // console.log(scrollAmountY);
+    
+  
+    if (Math.abs(scrollAmountX) > 5000 || Math.abs(scrollAmountY) > 5000) {
+        return;
+    }
+    const currentTime = Date.now();
+    if (currentTime - lastScrollTime > 20) {
+        if (Math.abs(scrollAmountX) > Math.abs(scrollAmountY)) {
+            khungSanPham.scrollLeft += scrollAmountX;
+        } 
+        else {
+            khungSanPham.scrollTop += scrollAmountY;
+        }
+
+        lastScrollTime = currentTime;
+    }
 });
 // END JS Sản phẩm nổi bật Trạm Nhỏ Xinh 
 
@@ -188,40 +218,50 @@ const cartTang = document.querySelectorAll('.giam');
 const cartGiam = document.querySelectorAll('.tăng');
 const cartSo = document.querySelectorAll('.so');
 const giaProduct = document.querySelectorAll('.cart-Price .price');
-console.log(cartTang, cartGiam, cartSo, giaProduct);
+const tenSanPham = document.querySelector('.productName'); 
+const totalPriceElement = document.querySelector('.totalPrice'); 
+const totalProductElement = document.querySelector('.totalProduct'); 
+
+let tongSanPham = 0;
+let tongTien = 0;
+totalPriceElement.textContent = tongTien
+totalProductElement.textContent = tongSanPham
 function capNhatsoAndtongTien(buttonType, index) {
     const quantityElement = cartSo[index];
     let quantity = parseInt(quantityElement.textContent);
+
     if (buttonType === 'minus') {
-        if (quantity > 0) quantity--;
-
-
+        if (quantity > 1) quantity--; 
     } else if (buttonType === 'plus') {
         quantity++;
-
-
     }
     quantityElement.textContent = quantity;
-
-
     const price = parseInt(giaProduct[index].textContent.replace('.', '').replace('Đ', ''));
-
-
-    const totalPriceElement = document.querySelector('.totalPrice');
-    const totalPrice = quantity * price;
-    totalPriceElement.textContent = totalPrice.toLocaleString('vi-VN') + "Đ";
-
-
-
-    const totalProductElement = document.querySelector('.totalProduct');
-    totalProductElement.textContent = quantity;
+    const totalPriceProduct = quantity * price;
+    tongSanPham = 0;
+    tongTien = 0;
+    cartSo.forEach((item, i) => {
+        const soLuong = parseInt(item.textContent);
+        const gia = parseInt(giaProduct[i].textContent.replace('.', '').replace('Đ', ''));
+        tongSanPham += soLuong;
+        tongTien += soLuong * gia;
+    });
+    totalProductElement.textContent = tongSanPham;
+    totalPriceElement.textContent = tongTien.toLocaleString('vi-VN') + "Đ";
+    if (tongSanPham === 0) {
+        tenSanPham.textContent = "Không có sản phẩm";
+        totalProductElement.textContent = "0";
+        totalPriceElement.textContent = "0Đ";
+    } else {
+        tenSanPham.textContent = "Tên sản phẩm";
+    }
 }
 cartTang.forEach((button, index) => {
     button.addEventListener('click', () => capNhatsoAndtongTien('minus', index));
 });
-
 cartGiam.forEach((button, index) => {
     button.addEventListener('click', () => capNhatsoAndtongTien('plus', index));
 });
+
 // END JS Giỏ hàng Trạm Nhỏ Xinh 
 
