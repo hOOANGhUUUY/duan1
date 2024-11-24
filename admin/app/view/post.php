@@ -46,7 +46,7 @@
                                 <td>'.$datePost.'</td>
 
                                 <td>'.$status.'</td>
-                                <td><a href="index.php?page=editPost">Sửa</a></td>
+                                <td><a href="index.php?page=viewEditPost&id='.$id.'">Sửa</a></td>
                             </tr>
                         ';
                     }

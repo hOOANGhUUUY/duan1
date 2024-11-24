@@ -46,42 +46,35 @@ class userController
     // Hàm này để thêm người dùng vào DB
     function addUser()
     {
-        $error = '';
+        $error = [];
+        $data = [];
         if (isset($_POST['submitAddUser'])) {
-            $data = [];
             $data['email'] = $_POST['emailNGuoiDung'];
-            // $data['password'] = md5($_POST['passNguoiDung']);
-            $passwordUser = $_POST['passNguoiDung'];
+            $data['password'] = $_POST['passNguoiDung'];
             $rePasswordUser = $_POST['xacNhanPassNguoiDung'];
             $data['name'] = $_POST['tenNguoiDung'];
             $data['role'] = $_POST['role'];
             $data['active'] = $_POST['activeNguoiDung'];
+
+
             //Kiểm tra các ô input
-            $error = (empty($data['name'])) ? 'Tên không dc để trống' : $error;
-            $error = (empty($data['email'])) ? 'Email không được để trống' : 
-            ((filter_var($data['email'], FILTER_VALIDATE_EMAIL) === false) ? 'Không phải là Email': $error);
+            $error['name'] = (empty($data['name'])) ? 'Tên không được để trống' : '';
+            $error['email'] = (empty($data['email'])) ? 'Email không được để trống' : ((filter_var($data['email'], FILTER_VALIDATE_EMAIL) === false) ? 'Không phải là Email' : '');
+            $error['password'] = (empty($data['password'])) ? 'Mật khẩu không được để trống' : '';
+            $error['rePassword'] = (empty($rePasswordUser)) ?
+                'Xác nhận mật khẩu không được để trống' : (($data['password'] !== $rePasswordUser) ? 'Xác nhận mật khẩu và mật khẩu không khớp' : '');
 
-            if(empty($error)){
+            // thêm người dùng nếu không có lỗi
+            if (empty($error['name']) && empty($error['email']) && empty($error['password']) && empty($error['rePassword'])) {
+                $data['password'] = md5($data['password']);
                 $this->userModel->insertUser($data);
-
+                echo '<script>
+                        alert("Thêm người dùng thành công")
+                        window.location.href = "index.php?page=user";
+                    </script>';
             }
-
- 
-            // kiểm tra mật khẩu
-
-
-            // if($passwordUser === $rePasswordUser){
-            //     $data['password'] = md5($passwordUser);
-            //     $this->userModel->insertUser($data);
-            //     echo '<script>alert("Thêm người dùng thành công")</script>';
-            // }else{
-            //     $error = 'Xác nhận mật khẩu và mật khẩu không khớp';
-            // }
-            // End kiểm tra mật khẩu
-
-            echo print_r($data);
         }
-        $this->renderView('userAdd', ['error' => $error]);
+        $this->renderView('userAdd', ['error' => $error, 'data' => $data]);
     }
 
 
@@ -99,14 +92,32 @@ class userController
     // HÀM NÀY ĐỂ CHỈNH SỬA NGƯỜI DÙNG
     function editUser()
     {
+        $data = [];
+        $error = [];
         if (isset($_POST['submitEditUser'])) {
-            $data = [];
+
             $data['email'] = $_POST['emailNguoiDung'];
             $data['name'] = $_POST['tenNguoiDung'];
             $data['role'] = $_POST['role'];
             $data['active'] = $_POST['activeNguoiDung'];
             $data['id'] = $_POST['idNguoiDung'];
-            $this->userModel->editUser($data);
+            $error['name'] = (empty($data['name'])) ? 'Tên không được để trống' : '';
+            $error['email'] = (empty($data['email'])) ? 'Email không được để trống' : ((filter_var($data['email'], FILTER_VALIDATE_EMAIL) === false) ? 'Không phải là Email' : '');
+
+
+
+            if (empty($error['name']) && empty($error['email'])) {
+                $this->userModel->editUser($data);
+                echo '<script>
+                        alert("Sửa người dùng thành công");
+                        window.location.href = "index.php?page=user";
+                        </script>';
+                exit;
+            }
+
+            $userID = $data;
         }
+
+        $this->renderView('userEdit', ['error' => $error, 'userID' => $userID]);
     }
 }

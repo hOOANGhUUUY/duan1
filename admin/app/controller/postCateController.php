@@ -5,5 +5,7 @@ class postCateController{
     {
         $this->postCateModel = new postCateModel();
     }
+
+    
 }
 ?>

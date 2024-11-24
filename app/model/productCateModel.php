@@ -8,4 +8,5 @@ class CategoryModel
         $this->db = new Database();
     }
     
+    
 }

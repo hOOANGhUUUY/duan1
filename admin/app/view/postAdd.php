@@ -2,7 +2,7 @@
     <div class="main-category">
         <div class="main-danhmuc">
             <p>Thêm bài viết</p>
-            <a href="../html/adminPost.html">Quay về</a>
+            <a href="index.php?page=post">Quay về</a>
         </div>
         <div class="main-header">
             <div class="right-main-header">
@@ -13,16 +13,14 @@
         </div>
     </div>
     <!-- xong phần header -->
-     <?php
-     print_r($listCatePost);
-     print_r($date)
-     ?>
-    <form action="index.php?page=addPost" method="POST">
+    <form action="index.php?page=addPost" method="POST" enctype="multipart/form-data">
         <div class="main-product">
             <div class="category-main-product">
             <label for="Tên danh mục">Danh mục</label>
                 <select name="danhMuc" id="">
+
                     <?php
+                    
                         $html = '';
                         foreach($listCatePost as $item){
                             extract($item);?>
@@ -39,33 +37,53 @@
             </div>
             <div class="category-main-product">
                 <label for="Tên danh mục">Tiêu đề</label>
-                <input type="text" name="tieuDe">
+                <input type="text" name="tieuDe" value="<?php echo (isset($dataForm['title'])) ? $dataForm['title'] : ''?>">
             </div>
+            <?php
+                if(isset($error['title'])){
+                    echo '<div style="color:red; padding-left:307px;">'.$error['title'].'</div>';
+                }
+            ?>
             <div class="category-main-product">
                 <label for="">Mô tả ngắn</label>
-                <input type="text" name="moTaNgan">
+                <input type="text" name="moTaNgan" value="<?php echo isset($dataForm['description']) ? $dataForm['description'] : ''?>">
             </div>
+            <?php
+                if(isset($error['description'])){
+                    echo '<div style="color: red; padding-left: 307px;">'.$error['description'].'</div>';
+                }
+            ?>
             <div class="text-main-product">
                 <label for="">Nội dung</label>
                 <!-- <input type="text"> -->
-                <textarea name="noiDung" id="" cols="50" rows="5"></textarea>
+                <textarea name="noiDung" id="" cols="50" rows="5" ><?php echo isset($dataForm['text']) ? $dataForm['text'] :'' ?></textarea>
             </div>
+            <?php
+            if(isset($error['text'])){
+                echo '<div style="color: red; padding-left: 307px">'.$error['text'].'</div>';
+            }
+            ?>
             <!-- Hình ảnh -->
             <div class="category-main-product">
                 <label for="">Hình ảnh</label>
-                <input type="file" name="img">
+                <input type="file" name="img" value="">
             </div>
+            <?php
+                if(isset($error['image'])){
+                    echo '<div style="color:red; padding-left:307px">'.$error['image'].'</div>';
+                }
+            ?>
             <div class="category-main-product">
                 <label for="status">Trạng thái</label>
                 <select name="status" id="">
-                    <option value="1">Đã hoạt động</option>
-                    <option value="2">Tạm ngưng</option>
-                    <option value="3">Đã hủy</option>
+                    <option value="1">Đã đăng</option>
+                    <option value="0">Chưa đăng</option>
+                    <option value="2">Đã hủy</option>
                 </select>
             </div>
         </div>
         <div class="submit-main-product">
-            <button type="submit" name="submitForm"><a href="#">Thêm bài viết</a></button>
+            <button type="submit" name="submitForm">Thêm bài viết</button>
         </div>
     </form>
 </div>

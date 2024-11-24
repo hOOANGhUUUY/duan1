@@ -34,6 +34,10 @@ if (isset($_GET['page'])) {
             $addPost = new postController();
             $addPost->addPost();
             break;
+        case 'viewEditPost':
+            $viewEditPost = new postController();
+            $viewEditPost->viewEditPost();
+            break;
         case 'editPost':
             $editPost = new postController();
             $editPost->editPost();
